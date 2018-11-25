@@ -46,6 +46,30 @@ class Hexagon::Hex
     self + DIRECTIONS[direction]
   end
 
+  def round
+    rx = q.round
+    ry = r.round
+    rz = s.round
+
+    x_diff = (rx - q).abs
+    y_diff = (ry - r).abs
+    z_diff = (rz - s).abs
+
+    if x_diff > y_diff && x_diff > z_diff
+      rx = - ry - rz
+    elsif y_diff > z_diff
+      ry = - rx - rz
+    else
+      rz = - rx - ry
+    end
+
+    @q = rx
+    @r = ry
+    @s = rz
+
+    self
+  end
+
   protected
 
   DIRECTIONS = {
