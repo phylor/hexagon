@@ -1,14 +1,16 @@
+require 'hexagon/orientation'
+
 class Hexagon::Layout
   attr_reader :origin, :size, :orientation
 
-  def initialize(origin, hexagon_size, orientation = :flat)
+  def initialize(origin, hexagon_size, orientation = :pointy)
     @origin = origin
-    @size = hexagon_size
+    @size = [hexagon_size[0] / Math.sqrt(3.0), hexagon_size[1] / 2.0]
     @orientation = case orientation
-                   when :flat
-                     Hexagon::Orientation::FLAT
                    when :pointy
                      Hexagon::Orientation::POINTY
+                   when :flat
+                     Hexagon::Orientation::FLAT
                    end
   end
 
@@ -20,8 +22,8 @@ class Hexagon::Layout
   end
 
   def to_hexagon(pixel)
-    x = (pixel[0] - origin[0]) / size[0]
-    y = (pixel[1] - origin[1]) / size[1]
+    x = (pixel[0] - origin[0]) / size[0].to_f
+    y = (pixel[1] - origin[1]) / size[1].to_f
 
     q = orientation.b0 * x + orientation.b1 * y
     r = orientation.b2 * x + orientation.b3 * y

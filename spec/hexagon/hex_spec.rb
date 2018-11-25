@@ -90,26 +90,26 @@ RSpec.describe Hexagon::Hex do
   end
 
   it 'returns the northeastern neighbor' do
-    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:northeast)).to eq(Hexagon::Hex.new(2, 1, -3))
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:northeast)).to eq(Hexagon::Hex.new(2, 0, -2))
   end
 
   it 'returns the eastern neighbor' do
-    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:east)).to eq(Hexagon::Hex.new(2, 0, -2))
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:east)).to eq(Hexagon::Hex.new(2, 1, -3))
   end
 
   it 'returns the southeastern neighbor' do
-    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:southeast)).to eq(Hexagon::Hex.new(1, 0, -1))
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:southeast)).to eq(Hexagon::Hex.new(1, 2, -3))
   end
 
   it 'returns the southwestern neighbor' do
-    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:southwest)).to eq(Hexagon::Hex.new(0, 1, -1))
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:southwest)).to eq(Hexagon::Hex.new(1, 0, -1))
   end
 
   it 'returns the western neighbor' do
-    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:west)).to eq(Hexagon::Hex.new(0, 2, -2))
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:west)).to eq(Hexagon::Hex.new(0, 1, -1))
   end
 
   it 'returns the northwestern neighbor' do
-    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:northwest)).to eq(Hexagon::Hex.new(1, 2, -3))
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:northwest)).to eq(Hexagon::Hex.new(0, 2, -2))
   end
 end

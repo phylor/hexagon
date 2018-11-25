@@ -9,7 +9,7 @@ class Hexagon::Hex
 
     @q = q
     @r = r
-    @s = -q - r
+    @s = s
   end
 
   def ==(o)
@@ -70,15 +70,23 @@ class Hexagon::Hex
     self
   end
 
+  def offset
+    offset = 1
+    col = q + (r + offset * (r % 2)).to_i / 2
+    row = r
+
+    [col, row]
+  end
+
   protected
 
   DIRECTIONS = {
-    northeast: Hexagon::Hex.new(1, 0, -1),
-    east:      Hexagon::Hex.new(1, -1, 0),
-    southeast: Hexagon::Hex.new(0, -1, 1),
-    southwest: Hexagon::Hex.new(-1, 0, 1),
-    west:      Hexagon::Hex.new(-1, 1, 0),
-    northwest: Hexagon::Hex.new(0, 1, -1)
+    east:      Hexagon::Hex.new(1, 0, -1),
+    northeast: Hexagon::Hex.new(1, -1, 0),
+    northwest: Hexagon::Hex.new(0, -1, 1),
+    west:      Hexagon::Hex.new(-1, 0, 1),
+    southwest: Hexagon::Hex.new(-1, 1, 0),
+    southeast: Hexagon::Hex.new(0, 1, -1)
   }
 
   def coordinates
