@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hexagon (0.1.0)
+    hexagon (0.1.0.pre.alpha)
 
 GEM
   remote: https://rubygems.org/
