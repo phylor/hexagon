@@ -20,4 +20,18 @@ RSpec.describe Hexagon::Hex do
   it 'raises when coordinates do not sum up to 0' do
     expect { Hexagon::Hex.new(1, 2, 3) }.to raise_error(RuntimeError)
   end
+
+  it 'equals to another hexagon with the same coordinates' do
+    hex1 = Hexagon::Hex.new(1, 2, -3)
+    hex2 = Hexagon::Hex.new(1, 2, -3)
+
+    expect(hex1).to eq(hex2)
+  end
+
+  it 'does not equal to another hexagon with different coordinates' do
+    hex1 = Hexagon::Hex.new(1, 2, -3)
+    hex2 = Hexagon::Hex.new(1, 3, -4)
+
+    expect(hex1).not_to eq(hex2)
+  end
 end
