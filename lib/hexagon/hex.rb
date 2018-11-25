@@ -40,7 +40,22 @@ class Hexagon::Hex
     (o - self).length
   end
 
+  def neighbor(direction)
+    raise ArgumentError unless DIRECTIONS.has_key?(direction)
+
+    self + DIRECTIONS[direction]
+  end
+
   protected
+
+  DIRECTIONS = {
+    northeast: Hexagon::Hex.new(1, 0, -1),
+    east:      Hexagon::Hex.new(1, -1, 0),
+    southeast: Hexagon::Hex.new(0, -1, 1),
+    southwest: Hexagon::Hex.new(-1, 0, 1),
+    west:      Hexagon::Hex.new(-1, 1, 0),
+    northwest: Hexagon::Hex.new(0, 1, -1)
+  }
 
   def coordinates
     [q, r, s]

@@ -84,4 +84,32 @@ RSpec.describe Hexagon::Hex do
 
     expect(hex1.distance_to(hex2)).to be 5
   end
+
+  it 'raises when an unknown direction is specified for the neighbor' do
+    expect { Hexagon::Hex.new(1, 2, -3).neighbor(:polar) }.to raise_error(ArgumentError)
+  end
+
+  it 'returns the northeastern neighbor' do
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:northeast)).to eq(Hexagon::Hex.new(2, 1, -3))
+  end
+
+  it 'returns the eastern neighbor' do
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:east)).to eq(Hexagon::Hex.new(2, 0, -2))
+  end
+
+  it 'returns the southeastern neighbor' do
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:southeast)).to eq(Hexagon::Hex.new(1, 0, -1))
+  end
+
+  it 'returns the southwestern neighbor' do
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:southwest)).to eq(Hexagon::Hex.new(0, 1, -1))
+  end
+
+  it 'returns the western neighbor' do
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:west)).to eq(Hexagon::Hex.new(0, 2, -2))
+  end
+
+  it 'returns the northwestern neighbor' do
+    expect(Hexagon::Hex.new(1, 1, -2).neighbor(:northwest)).to eq(Hexagon::Hex.new(1, 2, -3))
+  end
 end
