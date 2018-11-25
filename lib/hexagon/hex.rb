@@ -1,4 +1,4 @@
-# Stores in cube coordinates
+# Stores the position of a hexagon in cube coordinates
 class Hexagon::Hex
   attr_reader :q, :r, :s
 
@@ -30,6 +30,14 @@ class Hexagon::Hex
 
   def *(o)
     Hexagon::Hex.new(o * q, o * r)
+  end
+
+  def length
+    (q.abs + r.abs + s.abs) / 2
+  end
+
+  def distance_to(o)
+    (o - self).length
   end
 
   protected

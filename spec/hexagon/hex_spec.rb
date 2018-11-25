@@ -57,4 +57,31 @@ RSpec.describe Hexagon::Hex do
     multiplied = Hexagon::Hex.new(3, 6, -9)
     expect(hex * 3).to eq(multiplied)
   end
+
+  it 'calculates distance to itself' do
+    hex = Hexagon::Hex.new(1, 2, -3)
+
+    expect(hex.distance_to(hex)).to be 0
+  end
+
+  it 'calculates distance to a hexagon just to the right' do
+    hex1 = Hexagon::Hex.new(1, 2, -3)
+    hex2 = Hexagon::Hex.new(2, 1, -3)
+
+    expect(hex1.distance_to(hex2)).to be 1
+  end
+
+  it 'calculates distance to a hexagon further away, but on the same axis' do
+    hex1 = Hexagon::Hex.new(1, 2, -3)
+    hex2 = Hexagon::Hex.new(1, -2, 1)
+
+    expect(hex1.distance_to(hex2)).to be 4
+  end
+
+  it 'calculates distance to a hexagon further away on different axis' do
+    hex1 = Hexagon::Hex.new(1, 2, -3)
+    hex2 = Hexagon::Hex.new(-1, -1, 2)
+
+    expect(hex1.distance_to(hex2)).to be 5
+  end
 end
