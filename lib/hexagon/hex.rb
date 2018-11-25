@@ -20,6 +20,18 @@ class Hexagon::Hex
     coordinates.hash
   end
 
+  def +(o)
+    Hexagon::Hex.new(q + o.q, r + o.r)
+  end
+
+  def -(o)
+    Hexagon::Hex.new(q - o.q, r - o.r)
+  end
+
+  def *(o)
+    Hexagon::Hex.new(o * q, o * r)
+  end
+
   protected
 
   def coordinates

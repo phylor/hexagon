@@ -34,4 +34,27 @@ RSpec.describe Hexagon::Hex do
 
     expect(hex1).not_to eq(hex2)
   end
+
+  it 'adds two hexagons' do
+    hex1 = Hexagon::Hex.new(1, 2, -3)
+    hex2 = Hexagon::Hex.new(2, 0, -2)
+
+    sum = Hexagon::Hex.new(3, 2, -5)
+    expect(hex1 + hex2).to eq(sum)
+  end
+
+  it 'subtracts two hexagons' do
+    hex1 = Hexagon::Hex.new(1, 2, -3)
+    hex2 = Hexagon::Hex.new(2, 0, -2)
+
+    difference = Hexagon::Hex.new(-1, 2, -1)
+    expect(hex1 - hex2).to eq(difference)
+  end
+
+  it 'multiplies with a scalar' do
+    hex = Hexagon::Hex.new(1, 2, -3)
+
+    multiplied = Hexagon::Hex.new(3, 6, -9)
+    expect(hex * 3).to eq(multiplied)
+  end
 end
