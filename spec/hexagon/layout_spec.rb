@@ -35,4 +35,28 @@ RSpec.describe Hexagon::Layout do
 
     expect(layout.to_pixel(hex)).to eq [150, 100]
   end
+
+  it 'returns hexagon of centered pixels at origin' do
+    layout = Hexagon::Layout.new([0, 0], [50, 50], :pointy)
+
+    expect(layout.to_hexagon([0, 0])).to eq Hexagon::Hex.new(0, 0)
+  end
+
+  it 'returns hexagon of centered pixels' do
+    layout = Hexagon::Layout.new([0, 0], [50, 50], :pointy)
+
+    expect(layout.to_hexagon([25, 25])).to eq Hexagon::Hex.new(0, 1)
+  end
+
+  it 'returns hexagon of centered pixels with origin offset' do
+    layout = Hexagon::Layout.new([100, 200], [50, 50], :pointy)
+
+    expect(layout.to_hexagon([125, 225])).to eq Hexagon::Hex.new(0, 1)
+  end
+
+  it 'returns hexagon of random pixels' do
+    layout = Hexagon::Layout.new([0, 0], [50, 50], :pointy)
+
+    expect(layout.to_hexagon([0.25 * 50, 3 / 8.0 * 50])).to eq Hexagon::Hex.new(0, 0)
+  end
 end

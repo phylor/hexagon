@@ -1,5 +1,10 @@
 require 'hexagon/orientation'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
+#   0 -1    1 -1
+# -1 0   0 0   1 0
+#   -1 1    0 1
 class Hexagon::Layout
   attr_reader :origin, :size, :orientation
 
@@ -22,13 +27,13 @@ class Hexagon::Layout
   end
 
   def to_hexagon(pixel)
-    x = (pixel[0] - origin[0]) / size[0].to_f
-    y = (pixel[1] - origin[1]) / size[1].to_f
+    x = (pixel[0].to_d - origin[0].to_d) / size[0].to_d
+    y = (pixel[1].to_d - origin[1].to_d) / size[1].to_d
 
     q = orientation.b0 * x + orientation.b1 * y
     r = orientation.b2 * x + orientation.b3 * y
 
-    Hexagon::Hex.new(q, r)
+    Hexagon::Hex.new(q, r).round
   end
 
   def corners(hexagon)
