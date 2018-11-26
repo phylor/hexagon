@@ -30,4 +30,22 @@ class Hexagon::Layout
 
     Hexagon::Hex.new(q, r)
   end
+
+  def corners(hexagon)
+    center = to_pixel(hexagon)
+
+    (0..5).map do |corner|
+      offset = corner_offset(corner)
+
+      [center[0] + offset[0], center[1] + offset[1]]
+    end
+  end
+
+  private
+
+  def corner_offset(corner)
+    angle = 2.0 * Math::PI * (orientation.start_angle + corner) / 6.0
+
+    [size[0] * Math.cos(angle), size[1] * Math.sin(angle)]
+  end
 end
